@@ -11,13 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 @Controller
@@ -30,18 +31,18 @@ public class CultureController {
     private MessageSource messageSource;
 
     @RequestMapping(value = "/admin/cultures", method = RequestMethod.GET)
-    public String showCulturesList(Model uiModel) {
+    public String showCulturesList(Map<String, Object> uiModel) {
         LOGGER.debug("showCulturesList()");
-        uiModel.addAttribute("cults", cultServ.getCultures());
-        uiModel.addAttribute("cultForm", new Culture());
-        uiModel.addAttribute("count", questServ.getUnreadedQuestionCount());
-        uiModel.addAttribute("count1", ordServ.getUnreadedOrderCount());
-        uiModel.addAttribute("passwForm", new PasswInfo());
+        uiModel.put("cults", cultServ.getCultures());
+        uiModel.put("cultForm", new Culture());
+        uiModel.put("count", questServ.getUnreadedQuestionCount());
+        uiModel.put("count1", ordServ.getUnreadedOrderCount());
+        uiModel.put("passwForm", new PasswInfo());
         return "cultures";
     }
 
     @RequestMapping(value = "/admin/cultures", method = RequestMethod.POST)
-    public String saveCulture(Culture cult, Model uiModel, RedirectAttributes redAttr, Locale locale) {
+    public String saveCulture(Culture cult, RedirectAttributes redAttr, Locale locale) {
         LOGGER.info("saveCulture()");
         try {
             cultServ.addCulture(cult);
@@ -79,9 +80,9 @@ public class CultureController {
     }
 
     @RequestMapping(value = "/admins/cultures/{id}")
-    public String showCulture(@PathVariable("id") long id, Model uiModel) {
+    public String showCulture(@PathVariable("id") long id, HashMap<String, Object> uiModel) {
         LOGGER.info("showCulture()");
-        uiModel.addAttribute("cultures", cultServ.getCulture(id));
+        uiModel.put("cultures", cultServ.getCulture(id));
         return "culture";
     }
 

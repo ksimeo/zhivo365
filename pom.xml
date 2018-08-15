@@ -44,6 +44,8 @@
         <!--T E S T-->
         <junit.version>4.12</junit.version>
         <h2.version>1.4.196</h2.version>
+        <mockito.version>1.9.5</mockito.version>
+
     </properties>
 
     <dependencyManagement>
@@ -221,6 +223,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
         </dependency>
     </dependencies>
 
