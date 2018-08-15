@@ -1,0 +1,115 @@
+<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:spring="http://www.springframework.org/tags" version="2.0"
+     xmlns:form="http://www.springframework.org/tags/form">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+
+    <spring:message code="header_text" var="headerText"/>
+    <spring:message code="label_logout" var="labelLogout"/>
+    <spring:message code="label_welcome" var="labelWelcome"/>
+    <spring:url var="logoutUrl" value="/j_spring_security_logout" />
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div id="navbar-header">
+                <div class="navbar-header pull-left" style="padding-top: 0.5%; padding-left: 0;">
+                    <a href="${urlHome}"><jsp:include page="logo.jsp" /></a>
+                </div>
+                <ul class="nav navbar-nav navbar-right" style="padding-top: 0.5%;">
+                    <li class="navbar-brand" style="padding-left: 5px; padding-top: 1px;">
+                        <div class="btn-group pull-right" style="padding-left: 5px; padding-top: 1.1%;">
+                            <button class="btn btn-basic btn-md" onclick="document.location='${urlHome}'">
+                                <img src="../../../../resources/images/png/home.png"/>&nbsp;${labelToMain}
+                                <span class="badge">${count1}</span>
+                            </button>
+                            <button class="btn btn-basic btn-md" onclick="document.location='${urlProducts}'">
+                                <img src="../../../../resources/images/png/list.png"/>&nbsp;${labelProducts}</button>
+                            <button class="btn btn-basic btn-md" onclick="document.location='${urlQuestions}'">
+                                <img src="../../../../resources/images/png/messages.png"/>&nbsp;${labelMessages}
+                                <span class="badge">${count}</span>
+                            </button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pull-right" style="padding-top: 15%; color: #c5c5c5">&nbsp;&nbsp;<b>
+                            <img src="../../../../resources/images/png/usr.png"/>username</b></div>
+                    </li>
+                    <li>
+                        <div class="dropdown pull-right" style="padding-top: 10%;">
+                            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                <img src="../../../../resources/images/png/optns.png" />
+                                <%--Настройки--%>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-toggle="modal" data-target="#myModal">
+                                        <img src="../../../../resources/images/png/passw.png"/>&nbsp;${labelChangePassword}
+                                    </a>
+                                </li>
+                                <li><a href="${urlUsers}"><img src="../../../../resources/images/png/users.png"/>
+                                    ${labelUsersEdit}</a></li>
+                                <li>
+                                    <hr/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img src="../../../../resources/images/png/calc.png"/>&nbsp;${labelCalculationData}...
+                                </li>
+                                <li><a href="${urlCults}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...${labelPlantCultures}</a></li>
+                                <li><a href="${urlIrrs}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;....${labelIrrigation}</a></li>
+                                <li>
+                                    <hr/>
+                                    <a href="${urlMailing}"><img src="../../../../resources/images/png/mail.png"/>
+                                        ${labelNewslatters}</a></li>
+                                <li><a href="${urlStat}"><img src="../../../../resources/images/png/stat.png"/>&nbsp;
+                                    ${labelStat}</a></li>
+                                <li>
+                                    <hr/>
+                                    <a href="${urlExit}"><img src="../../../../resources/images/png/exit.png"/>&nbsp;
+                                        ${labelExit}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" authority="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">${labelChangingYourPassword}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form:form method="post" class="form-horizontal" modelAttribute="passwForm" action="${urlChangePassword}">
+                            <form:input path="userId" type="hidden" name="currusr" value="${userId}"/>
+
+                            <spring:bind path="oldPassword">
+                                <label>${labelCurrentPassword}:&nbsp;</label>
+                                <form:input path="oldPassword" type="password" style="width: 200px;" name="oldPassword"/>
+                                <form:errors path="oldPassword" class="control-label" />
+                            </spring:bind>
+                            <br/>
+                            <br/>
+                            <spring:bind path="newPassword">
+                                <label>${labelNewPassword}:&nbsp;</label>
+                                <form:input path="newPassword" type="password" style="width: 200px;" name="newPassword"/>
+                                <form:errors path="newPassword" class="contol-label" />
+                            </spring:bind>
+                            <br/>
+                            <label>${labelConfirmNewPassword}:&nbsp;</label>
+                            <input type="password" style="width: 200px;" name="newpassw2" />
+                        </form:form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">${labelSave}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">${labelClose}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

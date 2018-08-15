@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="default" template="/WEB-INF/layouts/default.jspx">
+        <put-attribute name="header" value="/WEB-INF/views/fragments/header.jsp" />
+        <put-attribute name="messageform" value="/WEB-INF/views/fragments/messageform.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/fragments/footer.jspx" />
+    </definition>
+
+    <definition name="default2" template="/WEB-INF/layouts/default2.jspx">
+        <put-attribute name="header" value="/WEB-INF/views/admin/fragments/header.jspx" />
+        <put-attribute name="footer" value="/WEB-INF/views/fragments/footer.jspx" />
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,44 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:tiles="http://tiles.apache.org/tags-tiles"
+      xmlns:spring="http://www.springframework.org/tags">
+
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+
+<spring:message code="label_good_day" var="labelTitlePage"/>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <title>${labelTitlePage}</title>
+    <meta content="Круглосуточная служба заказа Биогумата" name="description" />
+    <meta content="Заказать биогумат, купить биогумат on-line, биоудобрения, биогумат калия" name="keywords" />
+    <spring:url value="/resources/styles/standard.css" var="coreCss" />
+    <spring:url value="/resources/styles/bootstrap.min.css" var="bootstrapCss" />
+    <link href="../../resources/styles/standard.css" rel="stylesheet" />
+    <link href="../../resources/styles/bootstrap.min.css" rel="stylesheet" />
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/custom.js" />
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/bootstrap.min.js" />
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/jquery-3.2.1.min.js" />
+    <link rel="shortcut icon" href="../../resources/images/ico/favicon.ico" />
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/calc.js" />
+    <script type="text/javascript" src="../../resources/scripts/move-top.js.download" />
+    <script type="text/javascript" src="../../resources/scripts/easing.js.download" />
+    <script type="text/javascript" src="../../resources/scripts/custom.js" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+    <script src="https://unpkg.com/jquery-input-mask-phone-number@1.0.0/dist/jquery-input-mask-phone-number.js" />
+    <link href="${bootstrapCss}" rel="stylesheet" />
+    <link href="${coreCss}" rel="stylesheet" />
+</head>
+
+<body class="custom">
+    <tiles:insertAttribute name="header" ignore="true" />
+
+    <tiles:insertAttribute name="body" />
+
+    <tiles:insertAttribute name="messageform" ignore="true" />
+    <tiles:insertAttribute name="footer" ignore="true" />
+</body>
+</html>

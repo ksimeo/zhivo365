@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div version="2.0">
+    <h3 class="logo pull-left">
+        <i style="color: greenyellow;">
+            <a class="pull-left" href="phone"><img src="../../../resources/images/png/zhivorost365_logo.png"/></a>
+            &nbsp; - ${labelTagline}!</i>
+    </h3>
+</div>

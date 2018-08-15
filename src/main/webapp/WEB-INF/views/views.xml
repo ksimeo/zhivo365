@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition extends="default" name="start">
+        <put-attribute name="body" value="/WEB-INF/views/start.jspx" />
+    </definition>
+    <definition extends="default" name="regform">
+        <put-attribute name="body" value="/WEB-INF/views/regform.jspx" />
+    </definition>
+    <definition extends="default" name="branch1">
+        <put-attribute name="body" value="/WEB-INF/views/branch1.jspx" />
+    </definition>
+    <definition extends="default" name="calc">
+        <put-attribute name="body" value="/WEB-INF/views/calc.jspx" />
+    </definition>
+    <definition extends="default" name="orderform">
+        <put-attribute name="body" value="/WEB-INF/views/orderform.jspx" />
+    </definition>
+    <definition extends="default" name="branch2">
+        <put-attribute name="body" value="/WEB-INF/views/customers/branch2.jspx" />
+    </definition>
+    <definition extends="default" name="gratitude">
+        <put-attribute name="body" value="/WEB-INF/views/gratitude.jspx" />
+    </definition>
+    <definition extends="default" name="gratitude2">
+        <put-attribute name="body" value="/WEB-INF/views/gratitude2.jspx" />
+    </definition>
+
+    <definition extends="default2" name="main">
+        <put-attribute name="body" value="/WEB-INF/views/admin/main.jspx" />
+    </definition>
+    <definition extends="default2" name="cultures">
+        <put-attribute name="body" value="/WEB-INF/views/admin/cultures.jspx" />
+    </definition>
+    <definition extends="default2" name="irrigations">
+        <put-attribute name="body" value="/WEB-INF/views/admin/irrigations.jspx" />
+    </definition>
+    <definition extends="default2" name="products">
+        <put-attribute name="body" value="/WEB-INF/views/admin/products.jspx" />
+    </definition>
+    <definition extends="default2" name="questions">
+        <put-attribute name="body" value="/WEB-INF/views/admin/questions.jspx" />
+    </definition>
+    <definition extends="default2" name="users">
+        <put-attribute name="body" value="/WEB-INF/views/admin/users.jspx" />
+    </definition>
+</tiles-definitions>

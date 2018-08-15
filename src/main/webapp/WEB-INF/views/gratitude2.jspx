@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     version="2.0">
+    <div class="gratitude">
+        <div class="container">
+            <br/>
+            <br/>
+            <h1 class="title" style="color: #f7fff3;">${labelThanksForYourMessage}
+                <span style="color: lawngreen !important;">:)</span></h1>
+            <br/>
+            <div class="col-sm-offset-2 col-sm-10 pull-right">
+                <button type="button" class="btn btn-success btn-md" onclick="document.location='/'">
+                    ${labelDoOrderBiogumat}
+            </button>
+            <button type="button" class="btn btn-default btn-md" onclick="document.location='http://zhivorost.com.ua/'">
+                ${labelBackToAMain}&nbsp;<img src="../../resources/images/png/logo1.png"/></button>
+        </div>
+    </div>
+</div>
+</div>

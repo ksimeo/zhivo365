@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:spring="http://www.springframework.org/tags"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:form="http://www.springframework.org/tags/form">
+
+    <spring:message code="label_messages_magazine" var="labelMessagesMagazine" />
+
+    <div class="container">
+        <h2>${labelMessagesMagazine}</h2>
+        <table id="list">
+            <tr>
+                <td />
+            </tr>
+        </table>
+        <div id="pager"></div>
+    </div>
+</div>

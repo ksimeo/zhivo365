@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sf="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <spring:message code="label_we_see" var="labelWeSee"/>
+    <spring:message code="label_please_fill_in" var="labelPleaseFillIn"/>
+    <spring:message code="label_name" var="labelName"/>
+    <spring:message code="label_enter_your_name" var="labelEnterYourName"/>
+    <spring:message code="label_surname" var="labelSurname"/>
+    <spring:message code="label_enter_surname" var="labelEnterSurname"/>
+    <spring:message code="label_email" var="labelEMail"/>
+    <spring:message code="label_enter_email" var="labelEnterEMail"/>
+    <spring:message code="label_region" var="labelYourRegion"/>
+    <spring:message code="label_select_region" var="labelSelectYourRegion"/>
+    <spring:message code="label_ok" var="labelOk"/>
+    <spring:message code="label_ask_a_question" var="labelAskAQuestion"/>
+    <spring:message code="label_back_to_main" var="labelBackToMainPage"/>
+    <spring:message code="label_AR_of_Crimea" var="labelARCrimea"/>
+    <spring:message code="label_Vinnichchina" var="labelVinnichchina"/>
+    <spring:message code="label_Volynschyna" var="labelVolynschyna"/>
+    <spring:message code="label_Dniprianschina" var="labelDniprianschina"/>
+    <spring:message code="label_Donechchina" var="labelDonechchina"/>
+    <spring:message code="label_Zhytomyrshchyna" var="labelZhytomyrshchyna"/>
+    <spring:message code="label_Transcarpathia" var="labelTranscarpathia"/>
+    <spring:message code="label_Zaporizhzhya" var="labelZaporizhzhya"/>
+    <spring:message code="label_Ivano-Frankivshchyna" var="labelIvanoFrankivshchyna"/>
+    <spring:message code="label_Kyyivshchyna" var="labelKyyivshchyna"/>
+    <spring:message code="label_Kropivnichchina" var="labelKropivnichchina"/>
+    <spring:message code="label_Luganshchyna" var="labelLuganshchyna"/>
+    <spring:message code="label_Lʹvivshchyna" var="labelLʹvivshchyna"/>
+    <spring:message code="label_Mykolayivshchyna" var="labelMykolayivshchyna"/>
+    <spring:message code="label_Odeshchyna" var="labelOdeshchyna"/>
+    <spring:message code="label_Poltavshchyna" var="labelPoltavshchyna"/>
+    <spring:message code="label_Rivnenshchyna" var="labelRivnenshchyna"/>
+    <spring:message code="label_Sumshchyna" var="labelSumshchyna"/>
+    <spring:message code="label_Ternopilʹshchyna" var="labelTernopilʹshchyna"/>
+    <spring:message code="label_Kharkivshchyna" var="labelKharkivshchyna"/>
+    <spring:message code="label_Khersonshchyna" var="labelKhersonshchyna"/>
+    <spring:message code="label_Khmelʹnychchyna" var="labelKhmelʹnychchyna"/>
+    <spring:message code="label_Cherkasshchyna" var="labelCherkasshchyna"/>
+    <spring:message code="label_Chernivechchyna" var="labelChernivechchyna"/>
+    <spring:message code="label_Chernihivshchyna" var="labelChernihivshchyna"/>
+
+    <div class="container">
+        <jsp:include page="fragments/logo.jsp"/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="well">
+            <h2>${labelWeSee}!</h2>
+            <h3>${labelPleaseFillIn}</h3>
+
+            <sf:form type="userform" class="form-horizontal" method="POST" modelAttribute="usrForm" action="userform" >
+
+                <spring:bind path="name">
+                    <div class="form-group ${status.error ? 'has-error' : ''}" >
+                        <div class="col-sm-10">
+                            <label class="col-sm-2 control-label">${labelName}:</label>
+                            <sf:input path="name" size="10" id="user_name" class="form-control"
+                                        style="width: 200px;" placeholder="${labelEnterYourName}"/>
+                            <sf:errors path="name" />
+                        </div>
+                    </div>
+                </spring:bind>
+
+                <spring:bind path="surname">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="col-sm-10">
+                            <label for="user_surname" class="col-sm-2 control-label">${labelSurname}:</label>
+                            <sf:input path="surname" size="10" id="user_surname" class="form-control"
+                                      style="width: 200px;" placeholder="${labelEnterSurname}"/>
+                            <sf:errors path="surname" />
+                        </div>
+                    </div>
+                </spring:bind>
+
+                <spring:bind path="email">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="col-sm-10">
+                            <label for="user_email" class="col-sm-2 control-label">${labelEMail}:</label>
+                            <sf:input path="email" size="10" class="form-control" id="user_email" style="width: 200px;"
+                                      placeholder="${labelEnterEMail}"/>
+                            <sf:errors path="email" />
+                        </div>
+                    </div>
+                </spring:bind>
+
+                <spring:bind path="region">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="col-sm-10">
+                            <label for="region" class="col-sm-2 control-label">${labelYourRegion}:</label>
+                            <sf:select path="region" multiple="false" size="1" style="width: 200px;" class="form-control">
+                                <sf:option value="NONE" label="${labelSelectYourRegion}" />
+                                <sf:option value="Vinnichchina">${labelVinnichchina}</sf:option>
+                                <sf:option value="Volynschyna">${labelVolynschyna}</sf:option>
+                                <sf:option value="Dniprianschina">${labelDniprianschina}</sf:option>
+                                <sf:option value="Donechchina">${labelDonechchina}</sf:option>
+                                <sf:option value="Zhytomyrshchyna">${labelZhytomyrshchyna}</sf:option>
+                                <sf:option value="Transcarpathia">${labelTranscarpathia}</sf:option>
+                                <sf:option value="Zaporizhzhya">${labelZaporizhzhya}</sf:option>
+                                <sf:option value="Ivano-Frankivshchyna">${labelIvanoFrankivshchyna}</sf:option>
+                                <sf:option value="Kyyivshchyna">${labelKyyivshchyna}</sf:option>
+                                <sf:option value="Kropivnichchina">${labelKropivnichchina}</sf:option>
+                                <sf:option value="Luganshchyna">${labelLuganshchyna}</sf:option>
+                                <sf:option value="Lʹvivshchyna">${labelLʹvivshchyna}</sf:option>
+                                <sf:option value="Mykolayivshchyna">${labelMykolayivshchyna}</sf:option>
+                                <sf:option value="Odeshchyna">${labelOdeshchyna}</sf:option>
+                                <sf:option value="Poltavshchyna">${labelPoltavshchyna}</sf:option>
+                                <sf:option value="Rivnenshchyna">${labelRivnenshchyna}</sf:option>
+                                <sf:option value="Sumshchyna">${labelSumshchyna}</sf:option>
+                                <sf:option value="Ternopilʹshchyna">${labelTernopilʹshchyna}</sf:option>
+                                <sf:option value="Kharkivshchyna">${labelKharkivshchyna}</sf:option>
+                                <sf:option value="Khersonshchyna">${labelKhersonshchyna}</sf:option>
+                                <sf:option value="Khmelʹnychchyna">${labelKhmelʹnychchyna}</sf:option>
+                                <sf:option value="Cherkasshchyna">${labelCherkasshchyna}</sf:option>
+                                <sf:option value="Chernivechchyna">${labelChernivechchyna}</sf:option>
+                                <sf:option value="Chernihivshchyna">${labelChernihivshchyna}</sf:option>
+                            </sf:select>
+                        </div>
+                    </div>
+                </spring:bind>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" id="submit" class="btn btn-success btn-md">${labelOk}</button>
+                    <button type="button" onclick="document.location='/'" class="btn btn-md">${labelBackToMainPage}
+                    </button>
+                    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal1">
+                        <img src="../../resources/images/png/question.png">&nbsp;${labelAskAQuestion}</button>
+                </div>
+                <br/>
+                <br/>
+            </sf:form>
+        </div>
+    </div>
+</div>

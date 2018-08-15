@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     version="2.0">
+    <div class="gratitude2">
+        <div class="container">
+            <br/>
+            <br/>
+            <h1 class="title" style="color: #f7fff3;">${labelThanksForOrder} :)</h1>
+            <br/>
+            <div class="col-sm-offset-2 col-sm-10 pull-right">
+                <button type="button" class="btn btn-success btn-md" onclick="document.location='/'">
+                    ${labelOneMoreOrder}</button>
+                <button type="button" class="btn btn-default btn-md"
+                        onclick="document.location='http://zhivorost.com.ua/'">
+                    Перейти на Главную &nbsp;<img src="../../resources/images/png/logo1.png"/></button>
+                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal1">
+                    <img src="../../resources/images/png/question.png"/>&nbsp;${labelAskAQuestion}</button>
+            </div>
+        </div>
+    </div>
+</div>

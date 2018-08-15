@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zhivo365:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Zhivo365.war">
+      <element id="artifact" artifact-name="zhivo365:war exploded" />
+    </root>
+  </artifact>
+</component>

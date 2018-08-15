@@ -1,0 +1,44 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:tiles="http://tiles.apache.org/tags-tiles"
+      xmlns:spring="http://www.springframework.org/tags">
+
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+
+<head>
+    <title>${labelAdmin}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <spring:url value="/resources/styles/standard.css" var="coreCss" />
+    <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqgrid_css" />
+    <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js" var="jqgrid_locale_url" />
+    <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqgrid_url" />
+    <link href="../../resources/styles/standard.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="../../resources/images/ico/favicon.ico"/>
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/admins.js"/>
+    <link rel="javascript" type="text/javascript" href="../../resources/scripts/jquery-3.2.1.min.js" />
+    <link rel="javascript" type="text/javascript" href="../../resources/jqgrid/js/jquery.jqGrid.min.js" />
+    <link rel="javascript" type="text/javascript" href="../../resources/jqgrid/js/i18n/grid.locale-en.js" />
+    <link href="${coreCss}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+</head>
+
+<body class="admins">
+    <tiles:insertAttribute name="header" ignore="true" />
+<div id="wrapper">
+    <div id="main">
+        <tiles:insertAttribute name="body"/>
+        <tiles:insertAttribute name="footer" ignore="true"/>
+    </div>
+</div>
+</body>
+</html>

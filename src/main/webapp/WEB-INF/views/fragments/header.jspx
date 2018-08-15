@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     version="2.0">
+
+    <div class="custom">
+        <div class="container">
+            <jsp:include page="lang.jsp"/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</div>

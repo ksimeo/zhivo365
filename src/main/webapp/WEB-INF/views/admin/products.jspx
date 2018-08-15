@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:spring="http://www.springframework.org/tags"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:form="http://www.springframework.org/tags/form">
+
+    <spring:message code="label_products_list" var="labelProductsList" />
+    <spring:message code="label_product_name" var="labelProductName" />
+    <spring:message code="label_price" var="labelPrice" />
+    <spring:message code="label_currency_unit" var="labelCurrencyUnit" />
+    <spring:message code="label_measure_unit" var="labelMeasureUnit" />
+    <spring:message code="label_actuality" var="labelActuality" />
+    <spring:message code="label_yes" var="labelYes" />
+    <spring:message code="label_no" var="labelNo" />
+    <spring:message code="label_save" var="labelSave" />
+    <spring:message code="label_cancel" var="labelCancel" />
+    <spring:message code="label_products_absent" var="labelProductsAbsent" />
+    <spring:message code="label_add" var="labelAdd" />
+    <spring:message code="label_back_to_main" var="labelBackToMain" />
+    <spring:message code="label_product_adding_new" var="labelProductAddingNew" />
+    <spring:message code="label_change" var="labelChange" />
+    <spring:message code="label_product_change" var="labelProductChange" />
+
+    <div class="container">
+        <spring:url value="/admin/products" var="userActionUrl" />
+        <c:if test="${not empty msg}">
+            <div class="alert alert-${msg.type} alert-dismissible" authority="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>${msg.message}</strong>
+            </div>
+        </c:if>
+
+        <h3>${labelProductsList}</h3>
+
+        <c:if test="${not empty message}">
+            <div id="message" class="${message.type}">${message.message}</div>
+        </c:if>
+
+        <c:if test="${not empty products}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>${labelProductName}</th>
+                    <th>${labelPrice}</th>
+                    <th>${labelCurrencyUnit}</th>
+                    <th>${labelMeasureUnit}</th>
+                    <th>${labelActuality}</th>
+                    <th> &nbsp; </th>
+                    <th> &nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="prod" items="${products}">
+                    <tr>
+                        <td>${prod.id}</td>
+                        <td>${prod.name}</td>
+                        <td>${prod.price}</td>
+                        <td>${prod.currency.c}</td>
+                        <td>${prod.units.name}</td>
+                        <td>${prod.actual == true ? "Да" : "Нет"}</td>
+                        <td>
+                            <div class="btn-group-xs">
+                                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal"
+                                        data-target="#myModal${prod.id}">${labelChange}</button>
+                                <input type="button" class="btn btn-danger btn-xs" value="Удалить"
+                                       onclick="document.location='/admins/prods/${prod.id}/delete'"/>
+                            </div>
+                            <div class="modal fade" id="myModal${prod.id}" authority="dialog">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">${labelProductChange}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form:form class="form-horizontal" method="POST" modelAttribute="prodForm"
+                                           action="${userActionUrl}">
+                                            <form:input path="id" type="hidden" id="id" value="${prod.id}" />
+                                            <spring:bind path="name">
+                                            <div class="form-group ${status.error ? 'has-error' : ''}">
+                                                <div class="col-sm-10">
+                                                    <label class="col-sm-2 control-label">${labelProductName}:&nbsp;
+                                                    </label>
+                                                    <form:input path="name" type="text" class="form-control"
+                                                            id="name" style='width: 200px;' min="0" max="1000"
+                                                            value="${prod.name}" onchange="checkParams()"/>
+                                                    <form:errors path="name" class="control-label" />
+                                                </div>
+                                            </div>
+                                            </spring:bind>
+
+                                            <spring:bind path="price">
+                                            <div class="form-group ${status.error ? 'has-error' : ''}">
+                                                <div class="col-sm-10">
+                                                    <label class="col-sm-2 control-label">${labelPrice}:&nbsp;</label>
+                                                    <form:input path="price" type="text" class="form-control"
+                                                            id="price" style='width: 200px;' onkeyup="checkParams()"
+                                                            value="${prod.price}"
+                                                            placeholder="Необходимое количество продукта" min="0"
+                                                            max="1000"
+                                                            onchange="checkParams()"/>
+                                                    <form:errors path="price" class="control-label" />
+                                                </div>
+                                            </div>
+                                        </spring:bind>
+
+                                        <spring:bind path="currency">
+                                            <div class="form-group" >
+                                                <div class="col-sm-10">
+                                                    <label class="col-sm-2 control-label">${labelCurrencyUnit}:&nbsp;</label>
+                                                    <select id="currency" name="currency" size="1" onchange="checkParams()">
+                                                        <option name="currency" value="NaN">-Выберите-тип-валюты-</option>
+                                                        <c:forEach items="${currencies}" var="item">
+                                                            <option name="currency" value="${item}">${item.name}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </spring:bind>
+
+                                        <spring:bind path="units">
+                                            <div class="form-group" >
+                                                 <div class="col-sm-10">
+                                                 <label class="col-sm-2 control-label">${labelMeasureUnit}:&nbsp;</label>
+                                                <select id="units" name="units" size="1">
+                                                        <option name="units" value="NaN">-Выберите-единицу-измерения-
+                                                    </option>
+                                                    <c:forEach items="${units}" var="item">
+                                                        <option name="units" value="${item}">${item.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </spring:bind>
+
+                                    <spring:bind path="actual">
+                                        <div class="form-group" >
+                                            <div class="col-sm-10">
+                                                <label class="col-sm-2 control-label">${labelActuality}: &nbsp;
+                                                    <select id="actual" name="actual" size="1">
+                                                        <option value="false">${labelNo}</option>
+                                                        <option value="true">${labelYes}</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </spring:bind>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" id="submit" class="btn btn-success btn-md">${labelSave}
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-md" data-dismiss="modal">
+                                            ${labelCancel}
+                                        </button>
+                                    </div>
+                                </form:form>
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+        <c:if test="${empty products}">
+            <br/>
+            <br/>
+            <br/>
+            <h4><i>${labelProductsAbsent}</i></h4>
+        </c:if>
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal0">${labelAdd}
+        </button>
+        <button class="btn btn-default btn-md" onclick="document.location='/admins/orders'">${labelBackToMain}
+        </button> &nbsp;
+        <!-- Modal -->
+        <div class="modal fade" id="myModal0" authority="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">${labelProductAddingNew}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form:form class="form-horizontal" method="POST" modelAttribute="prodForm"
+                                   action="${userActionUrl}">
+                            <form:input path="id" type="hidden" id="id" />
+
+                            <spring:bind path="name">
+                                <div class="form-group ${status.error ? 'has-error' : ''}">
+                                    <div class="col-sm-10">
+                                        <label class="col-sm-2 control-label">${labelProductName}:&nbsp;</label>
+                                        <form:input path="name" type="text" class="form-control"
+                                                    id="name" style='width: 200px;'
+                                                    onchange="checkParams()"/>
+                                        <form:errors path="name" class="control-label" />
+                                    </div>
+                                </div>
+                            </spring:bind>
+
+                            <spring:bind path="price">
+                                <div class="form-group ${status.error ? 'has-error' : ''}">
+                                    <div class="col-sm-10">
+                                        <label class="col-sm-2 control-label">${labelPrice}:&nbsp;</label>
+                                        <form:input path="price" type="text" class="form-control"
+                                                    id="price" style='width: 200px;' onkeyup="checkParams()"
+                                                    placeholder="Необходимое количество продукта" min="0" max="1000"
+                                                    onchange="checkParams()"/>
+                                        <form:errors path="price" class="control-label" />
+                                    </div>
+                                </div>
+                            </spring:bind>
+
+                            <spring:bind path="currency">
+                                <div class="form-group" >
+                                    <div class="col-sm-10">
+                                        <label class="col-sm-2 control-label">${labelCurrencyUnit}:&nbsp;</label>
+                                        <select id="currency" name="currency" size="1" onchange="checkParams()">
+                                            <option name="currency" value="NaN">-Выберите-тип-валюты-</option>
+                                            <c:forEach items="${currencies}" var="item">
+                                                <option name="currency" value="${item}">${item.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </spring:bind>
+
+                            <spring:bind path="units">
+                                <div class="form-group" >
+                                    <div class="col-sm-10">
+                                        <label class="col-sm-2 control-label">${labelMeasureUnit}:&nbsp;</label>
+                                        <select id="units" name="units" size="1">
+                                            <option name="units" value="NaN">-Выберите-единицу-измерения-</option>
+                                            <c:forEach items="${units}" var="item">
+                                                <option name="units" value="${item}">${item.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </spring:bind>
+
+                            <spring:bind path="actual">
+                                <div class="form-group" >
+                                    <div class="col-sm-10">
+                                        <label class="col-sm-2 control-label">${labelActuality}:&nbsp;</label>
+                                        <select id="actual" name="actual" size="1">
+                                            <option value="false">${labelNo}</option>
+                                            <option value="true">${labelYes}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </spring:bind>
+                            <div class="modal-footer">
+                                <button type="submit" id="submit" class="btn btn-success btn-md">${labelAdd}</button>
+                                <button type="button" class="btn btn-default btn-md" data-dismiss="modal">${labelCancel}
+                                </button>
+                            </div>
+                        </form:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

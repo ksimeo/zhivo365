@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sf="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#yourphone').usPhoneFormat({
+                format: '(xxx) xxx-xxxx',
+            });
+
+            $('#yourphone2').usPhoneFormat();
+        });
+    </script>
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_logbook" var="labelLogBook"/>
+    <spring:message code="label_id" var="labelId"/>
+    <spring:message code="label_date" var="labelDate"/>
+    <spring:message code="label_name" var="labelName"/>
+    <spring:message code="label_surname" var="labelSurname"/>
+    <spring:message code="label_phone" var="labelPhone"/>
+    <spring:message code="label_email" var="labelEMail"/>
+    <spring:message code="label_product_type" var="labelProductType"/>
+    <spring:message code="label_count" var="labelCount"/>
+    <spring:message code="label_units" var="labelUnits"/>
+    <spring:message code="label_state" var="labelState"/>
+    <spring:message code="label_viewed" var="labelViewed"/>
+    <spring:message code="label_no_orders" var="labelNoOrder"/>
+    <spring:message code="label_no_indicated" var="labelNoIndicated"/>
+
+    <h1>
+        <script type="text/javascript">
+            day = new Date();
+                hour = day.getHours();
+                if (hour >= 5 &amp;&amp; hour &lt; 12) greeting = "${labelGoodMorning}";
+                else {
+                    if (hour >= 12 &amp;&amp; hour &lt; 18) greeting = "${labelGoodDay}";
+                    else {
+                        if (hour >= 18 &amp;&amp; hour &lt; 24) greeting = "${labelGoodEvening}";
+                        else {
+                            if (hour >= 0 &amp;&amp; hour &lt; 5) greeting = "${labelGoodNight}";
+                        }
+                    }
+                }
+                document.write(greeting);
+        </script>
+    </h1>
+    <h1>${labelWelcome}&nbsp;<img src="../../resources/images/png/logo_mini.png"/></h1>
+    <h2>- ${labelRoundTheClock}!</h2>
+    <hr/>
+    <h3>${labelForBegining}:</h3>
+    <h2>
+        <sf:form action="phone" method="POST" modelAttribute="phoneForm">
+            +38&nbsp;<sf:input type='text' path="phoneNumber" id='yourphone' placeholder="(0--) --- ----"
+                               maxlength="14" autofocus="autofocus" style="width: 215px;" />
+            <br/>
+            <br/>
+            <button class="btn btn-md btn-success" type="submit">${labelOk}</button>
+            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal1">
+                <img src="../../resources/images/png/question.png" />&nbsp;${labelAskAQuestion}</button>
+        </sf:form>
+    </h2>
+    <br/>
+    <br/>
+</div>
